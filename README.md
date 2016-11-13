@@ -7,16 +7,16 @@ This example app has two modules
 
 Web app has standard for playframework application's structure
 
- app
-    controllers
-    models
-    views
- conf
-    application.conf
-    routes
- project
-    build.properties
-    plugins.sbt
+ - app
+    - controllers
+    - models
+    - views
+ - conf
+    - application.conf
+    - routes
+ - project
+    - build.properties
+    - plugins.sbt
 
 To run tests:
     sbt clean compile test
