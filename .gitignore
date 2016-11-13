@@ -1,0 +1,16 @@
+logs
+target
+native
+dist
+tmp
+out
+project/project
+project/target
+/*.iml
+/.idea
+/.idea_modules
+/.history
+/.classpath
+/.project
+/.settings
+/RUNNING_PID

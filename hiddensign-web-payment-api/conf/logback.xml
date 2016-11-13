@@ -1,0 +1,70 @@
+<configuration>
+
+    <property name="LOG_HOME" value="${user.dir}/logs" />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-35([%d{dd.MM.yyyy HH:mm:ss.SSS}] %-5level [%X{host}][%X{userId}][%X{event}][%X{uid}] [%thread]) [%-15.15logger{15}] - %message%n%xException</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Daily rollover with compression -->
+            <fileNamePattern>${LOG_HOME}/application-log-%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <!-- keep 7 days worth of history -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-35([%d{dd.MM.yyyy HH:mm:ss.SSS}] %-5level [%X{host}][%X{userId}][%X{event}][%X{uid}] [%thread]) [%-15.15logger{15}] - %message%n%xException</pattern>
+            <!-- this quadruples logging throughput -->
+            <immediateFlush>false</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="AKKA_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/akka.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Daily rollover with compression -->
+            <fileNamePattern>${LOG_HOME}/akka-log-%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <!-- keep 7 days worth of history -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-35([%d{dd.MM.yyyy HH:mm:ss.SSS}] %-5level [%X{host}][%X{userId}][%X{event}][%X{uid}] [%thread]) [%-15.15logger{15}] - %message%n%xException</pattern>
+            <!-- this quadruples logging throughput -->
+            <immediateFlush>false</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover with compression -->
+            <fileNamePattern>${LOG_HOME}/access-log-%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <!-- keep 7 days worth of history -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{dd.MM.yyyy HH:mm:ss.SSS}] %-5level [%X{host}][%X{userId}][%X{event}][%X{uid}] : %message%n</pattern>
+            <!-- this quadruples logging throughput -->
+            <immediateFlush>false</immediateFlush>
+        </encoder>
+    </appender>
+
+    <!-- additivity=false ensures access log data only goes to the access log -->
+    <logger name="access" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE" />
+    </logger>
+
+    <root level="ERROR">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
