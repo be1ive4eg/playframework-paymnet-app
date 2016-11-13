@@ -21,5 +21,5 @@ Web app has standard for playframework application's structure
 To run tests:
     sbt "clean" "compile" "test"
 
-To run in developer mode
+To run in developer mode:
     sbt "project webpaymentapi" "clean" "clean-files" "compile" "run 9100"
