@@ -19,7 +19,7 @@ lazy val commonSettings = Seq(
 			("Implementation-Version", webVersion)
 		)
 	),
-	scalaVersion := "2.11.8",
+	scalaVersion := "2.11.7",
 	javacOptions ++= Seq(
 		"-source", "1.8", 
 		"-target", "1.8", 
