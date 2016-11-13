@@ -19,4 +19,7 @@ Web app has standard for playframework application's structure
     - plugins.sbt
 
 To run tests:
-    sbt clean compile test
+    sbt "clean" "compile" "test"
+
+To run in developer mode
+    sbt "project webpaymentapi" "clean" "clean-files" "compile" "run 9100"
