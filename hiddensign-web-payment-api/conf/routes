@@ -4,9 +4,9 @@
 
 # Home page
 # authorization
-POST          /account           com.hiddensign.web.payment.rest.api.controllers.AccountController.create()
-GET           /account/:accId    com.hiddensign.web.payment.rest.api.controllers.AccountController.find(accId: Long)
-POST          /account/transfer  com.hiddensign.web.payment.rest.api.controllers.AccountController.transfer()
+POST          /accounts           com.hiddensign.web.payment.rest.api.controllers.AccountController.create()
+GET           /accounts/:accId    com.hiddensign.web.payment.rest.api.controllers.AccountController.find(accId: Long)
+POST          /accounts/transfer  com.hiddensign.web.payment.rest.api.controllers.AccountController.transfer()
 
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                                            controllers.Assets.at(path="/public", file)

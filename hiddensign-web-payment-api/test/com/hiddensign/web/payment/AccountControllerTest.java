@@ -35,7 +35,7 @@ public class AccountControllerTest extends WithApplication {
     public AccountResponse createAccount(CurrencyType ccy, BigDecimal balance) {
         Http.RequestBuilder request = new Http.RequestBuilder().method(POST)
                 .bodyJson(Json.toJson(new AccountCreateRequest(ccy, balance)))
-                .uri("/account");
+                .uri("/accounts");
         Result result = route(request);
 
         assertEquals(Results.ok().status(), result.status());
@@ -46,7 +46,7 @@ public class AccountControllerTest extends WithApplication {
 
     public AccountResponse findAccount(long accId) {
         Http.RequestBuilder request = new Http.RequestBuilder().method(GET)
-                .uri("/account/" + accId);
+                .uri("/accounts/" + accId);
         Result result = route(request);
 
         assertEquals(Results.ok().status(), result.status());
@@ -89,7 +89,7 @@ public class AccountControllerTest extends WithApplication {
 
         Http.RequestBuilder request = new Http.RequestBuilder().method(POST)
                 .bodyJson(Json.toJson(new AccountTransferRequest(ac1.id, ac2.id, BigDecimal.valueOf(500.48))))
-                .uri("/account/transfer");
+                .uri("/accounts/transfer");
         Result result = route(request);
 
         assertEquals(Results.ok().status(), result.status());
@@ -111,7 +111,7 @@ public class AccountControllerTest extends WithApplication {
 
         Http.RequestBuilder request = new Http.RequestBuilder().method(POST)
                 .bodyJson(Json.toJson(new AccountTransferRequest(ac1.id, ac2.id, BigDecimal.valueOf(500.48))))
-                .uri("/account/transfer");
+                .uri("/accounts/transfer");
         Result result = route(request);
 
         assertEquals(Results.badRequest().status(), result.status());
@@ -134,7 +134,7 @@ public class AccountControllerTest extends WithApplication {
         for (int i = 0; i < 10; i++) {
             Http.RequestBuilder request = new Http.RequestBuilder().method(POST)
                     .bodyJson(Json.toJson(new AccountTransferRequest(ac1.id, ac2.id, BigDecimal.valueOf(50.04))))
-                    .uri("/account/transfer");
+                    .uri("/accounts/transfer");
             Result result = route(request);
 
             assertEquals(Results.ok().status(), result.status());
@@ -164,7 +164,7 @@ public class AccountControllerTest extends WithApplication {
             rss[i] = CompletableFuture.supplyAsync(() -> {
                 Http.RequestBuilder request = new Http.RequestBuilder().method(POST)
                         .bodyJson(Json.toJson(new AccountTransferRequest(acc1.id, acc2.id, BigDecimal.valueOf(50.04))))
-                        .uri("/account/transfer");
+                        .uri("/accounts/transfer");
                 return route(request);
             });
         }
@@ -175,7 +175,7 @@ public class AccountControllerTest extends WithApplication {
             rss[i] = CompletableFuture.supplyAsync(() -> {
                 Http.RequestBuilder request = new Http.RequestBuilder().method(POST)
                         .bodyJson(Json.toJson(new AccountTransferRequest(acc2.id, acc1.id, BigDecimal.valueOf(50.04))))
-                        .uri("/account/transfer");
+                        .uri("/accounts/transfer");
                 return route(request);
             });
         }

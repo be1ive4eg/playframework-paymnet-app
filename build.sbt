@@ -1,8 +1,6 @@
 import sbt.Package.ManifestAttributes
 
-scalaVersion := "2.11.8"
-
-val webVersion = "1.2-SNAPSHOT"
+val webVersion = "1.0-SNAPSHOT"
 val akkaVersion = "2.4.11"
 val ebeanormVersion = "8.4.1"
 val ebeanormQueryVersion = "8.4.1"
@@ -20,7 +18,7 @@ lazy val commonSettings = Seq(
 		)
 	),
 	scalaVersion := "2.11.7",
-	javacOptions ++= Seq(
+	javacOptions in (Compile, compile) ++= Seq(
 		"-source", "1.8", 
 		"-target", "1.8", 
 		"-encoding", "UTF-8", 
