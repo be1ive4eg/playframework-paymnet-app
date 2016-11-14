@@ -31,10 +31,10 @@ Web rest api usage
 
 
 To run tests:
-    - sbt "clean" "compile" "test"
+ - sbt "clean" "compile" "test"
 
 To build distribution with sh and bat
-    - sbt "clean" "compile" "dist"
+ - sbt "clean" "compile" "dist"
 
 To run in developer mode:
-    - sbt "project webpaymentapi" "clean" "clean-files" "compile" "run 9100"
+ - sbt "project webpaymentapi" "clean" "clean-files" "compile" "run 9100"
